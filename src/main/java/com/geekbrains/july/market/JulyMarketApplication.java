@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class JulyMarketApplication {
 	// Домашнее задание:
+	
 	// 1. Чуть-чуть разберитесь с AngularJS
 	// 2. Сделайте отображение всех товаров в таблицу
 	// через REST API
