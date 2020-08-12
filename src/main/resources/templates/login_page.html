@@ -1,61 +1,88 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 
 <head>
-    <title>Login Page</title>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" type="image/png" th:href="@{/favicon.ico}"/>
+    <title>Login Form</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="/css/style.css" rel="stylesheet">-->
+    <!--<script src="/js/app.js"></script>-->
+    <style type="text/css">
+        .login-form {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        #inputUsername {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        #inputPassword {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    </style>
+    <script>
+        angular.module('postExample', [])
+            .controller('PostController', ['$scope', '$http', function($scope, $http) {
+
+                this.postForm = function() {
+
+                    var encodedString = 'username=' +
+                        encodeURIComponent(this.inputData.username) +
+                        '&password=' +
+                        encodeURIComponent(this.inputData.password);
+
+                    $http({
+                        method: 'POST',
+                        url: '/authenticate',
+                        data: encodedString,
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                    })
+                        .success(function(data, status, headers, config) {
+                            console.log(data);
+                            if ( data.trim() === 'correct') {
+                                window.location.href = 'success.html';
+                            } else {
+                                $scope.errorMsg = "Login not correct";
+                            }
+                        })
+                        .error(function(data, status, headers, config) {
+                            $scope.errorMsg = 'Unable to submit form';
+                        })
+                }
+
+            }]);
+    </script>
+
 </head>
 
-<body>
-<div>
-    <div id="loginbox" style="margin-top: 50px;" class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="panel-title">Sign In</div>
-            </div>
-            <div style="padding-top: 30px" class="panel-body">
-                <form th:action="@{/authenticate}" method="POST" class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-xs-15">
-                            <div>
-                                <div th:if="${param.error} != null">
-                                    <div class="alert alert-danger col-xs-offset-1 col-xs-10">
-                                        Invalid username and password
-                                    </div>
-                                </div>
-                                <div th:if="${param.logout} != null">
-                                    <div class="alert alert-success col-xs-offset-1 col-xs-10">
-                                        You have been logged out
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 25px" class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" name="username" placeholder="username" class="form-control">
-                    </div>
-                    <div style="margin-bottom: 25px" class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input type="password" name="password" placeholder="password" class="form-control">
-                    </div>
-                    <div style="margin-top: 10px" class="form-group">
-                        <div class="col-sm-6 controls">
-                            <button type="submit" class="btn btn-success">Login</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+<body ng-app="postExample" ng-controller="PostController as postCtrl">
+
+<div class="container">
+    <form class="login-form" ng-submit="postCtrl.postForm()">
+
+        <h2>Please sign in</h2>
+
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus ng-model="postCtrl.inputData.username">
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="postCtrl.inputData.password">
+
+        <br>
+
+        <div class="alert alert-danger" role="alert" ng-show="errorMsg">{{errorMsg}}</div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+    </form>
 </div>
+
 </body>
 </html>
