@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductsService {
@@ -27,7 +28,7 @@ public class ProductsService {
         return productsRepository.save(product);
     }
 
-    public Product findById(Long id) {
+    public Product findById(Long id) throws ProductNotFoundException {
         return productsRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Can't found product with id = " + id));
     }
 
