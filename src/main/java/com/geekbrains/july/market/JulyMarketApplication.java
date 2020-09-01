@@ -5,8 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class JulyMarketApplication {
-	
 
+	// Домашнее задание:
+	// 1. Добавьте spring web service для выгрузки всех товаров
+	// 2. (без практики) Полистайте код с безопасностью и токенами
 	public static void main(String[] args) {
 		SpringApplication.run(JulyMarketApplication.class, args);
 	}
