@@ -1,0 +1,5 @@
+after saveNewProduct: Product(id=5, title=qwe, price=111, categories=null)after saveNewProduct: Product(id=5, title=qwe, price=111, categories=null)
+after saveNewProduct: Product(id=5, title=qwe, price=11122, categories=null)
+after saveNewProduct: Product(id=6, title=qwe11, price=11122, categories=null)
+after saveNewProduct: Product(id=7, title=qwe1133, price=11122, categories=null)
+after modifyProduct: Product(id=1, title=Cheese, price=3220.00, categories=null)
