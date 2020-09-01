@@ -6,4 +6,4 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://geekbrains.com/july/market/api/greeting", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package com.geekbrains.july.market.greet.greeting;
+package com.geekbrains.july.market.api.greeting;

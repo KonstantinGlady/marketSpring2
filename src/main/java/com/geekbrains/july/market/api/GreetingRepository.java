@@ -1,6 +1,6 @@
-package com.geekbrains.july.market.greet;
+package com.geekbrains.july.market.api;
 
-import com.geekbrains.july.market.greet.greeting.Greeting;
+import com.geekbrains.july.market.api.greeting.Greeting;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 

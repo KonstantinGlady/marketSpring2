@@ -1,4 +1,4 @@
-package com.geekbrains.july.market.greet;
+package com.geekbrains.july.market.api;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;

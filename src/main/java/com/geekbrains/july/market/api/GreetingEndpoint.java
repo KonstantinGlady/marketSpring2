@@ -1,7 +1,7 @@
-package com.geekbrains.july.market.greet;
+package com.geekbrains.july.market.api;
 
-import com.geekbrains.july.market.greet.greeting.GetGreetingRequest;
-import com.geekbrains.july.market.greet.greeting.GetGreetingResponse;
+import com.geekbrains.july.market.api.greeting.GetGreetingRequest;
+import com.geekbrains.july.market.api.greeting.GetGreetingResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;

@@ -6,7 +6,7 @@
 //
 
 
-package com.geekbrains.july.market.greet.greeting;
+package com.geekbrains.july.market.api.greeting;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
