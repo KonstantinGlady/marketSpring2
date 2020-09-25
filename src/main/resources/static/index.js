@@ -3,6 +3,17 @@
 
     angular
         .module('app', ['ngRoute', 'ngStorage'])
+        .service('orderIdStorage', function () {
+            var _id = 'zero';
+            return {
+                setId: function (id) {
+                    _id = id;
+                },
+                getId: function () {
+                    return _id;
+                }
+            }
+        })
         .config(config)
         .run(run);
 
@@ -23,11 +34,21 @@
             .when('/cart', {
                 templateUrl: 'cart/cart.html',
                 controller: 'cartController'
+            })
+            .when('/create_order', {
+                templateUrl: 'create_order/create_order.html',
+                controller: 'createOrderController',
+               // controllerAs: 'crtOrdCtr'
+            })
+            .when('/create_order_result', {
+                templateUrl: 'create_order_result/create_order_result.html',
+                controller: 'createOrderResultController'
             });
 
         $httpProvider.interceptors.push(function ($q, $location) {
             return {
                 'responseError': function (rejection, $localStorage, $http) {
+                    console.log('intercepted');
                     var defer = $q.defer();
                     if (rejection.status == 401 || rejection.status == 403) {
                         console.log('error: 401-403');
