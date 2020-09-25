@@ -3,6 +3,17 @@
 
     angular
         .module('app', ['ngRoute', 'ngStorage'])
+        .service('orderIdStorage', function () {
+            var _id = 'zero';
+            return {
+                setId: function (id) {
+                    _id = id;
+                },
+                getId: function () {
+                    return _id;
+                }
+            }
+        })
         .config(config)
         .run(run);
 
@@ -26,10 +37,12 @@
             })
             .when('/create_order', {
                 templateUrl: 'create_order/create_order.html',
-                controller: 'createOrderController'
+                controller: 'createOrderController',
+               // controllerAs: 'crtOrdCtr'
             })
             .when('/create_order_result', {
-                templateUrl: 'create_order_result/create_order_result.html'
+                templateUrl: 'create_order_result/create_order_result.html',
+                controller: 'createOrderResultController'
             });
 
         $httpProvider.interceptors.push(function ($q, $location) {

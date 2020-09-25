@@ -1,4 +1,4 @@
-angular.module('app').controller('createOrderController', function ($scope, $http, $location) {
+angular.module('app').controller('createOrderController', function ($scope, $http, $location, orderIdStorage) {
     const contextPath = 'http://localhost:8189/market';
 
     fillTable = function () {
@@ -14,7 +14,8 @@ angular.module('app').controller('createOrderController', function ($scope, $htt
             url: contextPath + '/api/v1/orders/confirm',
             method: "POST",
             params: {address: $scope.userinfo.address}
-        }).then(function () {
+        }).then(function (responce) {
+            orderIdStorage.setId(responce);
             $location.path('/create_order_result');
         });
     }
